@@ -1,0 +1,21 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: terraapp
+  labels:
+    app: terraapp
+spec:
+  replicas: 2  # Number of pods you want
+  selector:
+    matchLabels:
+      app: terraapp
+  template:
+    metadata:
+      labels:
+        app: terraapp
+    spec:
+      containers:
+        - name: terraapp
+          image: fejiroeriksson/terraapp:latest  # Image from Docker Hub or ECR
+          ports:
+            - containerPort: 80
