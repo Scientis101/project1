@@ -7,11 +7,11 @@ WORKDIR /app
 # Copy the current directory contents into the container at /app
 COPY . /app
 
-# Install pip and upgrade it to the latest version
-RUN pip install --upgrade pip
-
 # Install dependencies from requirements.txt
 RUN pip install --no-cache-dir -r requirements.txt
+
+# Install specific versions of werkzeug and flask to avoid conflicts
+RUN pip install --upgrade werkzeug==2.0.3 flask==2.0.3
 
 # Set environment variables for Flask
 ENV FLASK_APP=app.py
